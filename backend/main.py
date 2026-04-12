@@ -52,7 +52,17 @@ def summarize(max_results: int = 100):
         response = client.chat.completions.create(
             extra_body={"thinking": {"type": "disabled"}},
             model="meta-llama-3.1-8b-instruct",
-            messages=[{"role": "user", "content": f"Summarize this email in exactly 2 sentences. Do not include any preamble, introduction, or URLs in your summary, just the summary itself. Subject: {email['subject']} Body: {email['body']}"}]
+            messages=[
+                {
+                    "role": "user",
+                    "content": (
+                        "Summarize this email in exactly 2 sentences. "
+                        "Do not include any preamble, introduction, or URLs in your summary, just the summary itself.\n\n"
+                        f"Subject: {email['subject']}\n"
+                        f"Body: {email['body']}"
+                    )
+                }
+            ]
         )
 
         elapsed = time.perf_counter() - email_start
@@ -187,7 +197,17 @@ def school(max_results: int = 100):
         response = client.chat.completions.create(
             extra_body={"thinking": {"type": "disabled"}},
             model="meta-llama-3.1-8b-instruct",
-            messages=[{"role": "user", "content": f"Summarize this email in exactly 2 sentences. Do not include any preamble, introduction, or URLs in your summary, just the summary itself. Subject: {email['subject']} Body: {email['body']}"}]
+            messages=[
+                {
+                    "role": "user",
+                    "content": (
+                        "Summarize this email in exactly 2 sentences. "
+                        "Do not include any preamble, introduction, or URLs in your summary, just the summary itself.\n\n"
+                        f"Subject: {email['subject']}\n"
+                        f"Body: {email['body']}"
+                    )
+                }
+            ]
         )
 
         cache[email["id"]] = response.choices[0].message.content
