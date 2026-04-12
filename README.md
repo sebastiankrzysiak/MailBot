@@ -2,6 +2,11 @@
 
 A personal email management tool that uses a locally running LLM to summarize emails, surface job opportunities, and identify recurring senders for bulk deletion.
 
+## Screenshots
+
+![Inbox](screenshots/inbox.png)
+![Top Senders](screenshots/topsenders.png)
+
 ## Features
 
 - **Inbox** — summarizes recent emails in 2 sentences using a local LLM
