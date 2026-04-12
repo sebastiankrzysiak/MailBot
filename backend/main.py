@@ -12,7 +12,7 @@ load_dotenv()
 cache = {}
 
 client = OpenAI(
-    base_url="http://192.168.1.31:1234/v1",
+    base_url=os.getenv("LMSTUDIO_URL"),
     api_key="lm-studio"
 )
 

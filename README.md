@@ -52,6 +52,7 @@ pip install -r requirements.txt
 Create a `.env` file in the `backend` folder:
 ```
 SCHOOL_EMAIL=your_school_email@example.com
+LMSTUDIO_URL=http://your-lmstudio-ip:1234/v1
 ```
 
 Place your `credentials.json` from Google Cloud in the `backend` folder, then run:
