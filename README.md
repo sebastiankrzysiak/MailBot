@@ -32,7 +32,7 @@ Benchmarked several models before settling on Llama 3.1 8B (~1s/email):
 - Mistral 7B — ~2s/email
 - Llama 3.1 8B — ~1s/email
 
-In-memory caching reduces repeat summarization to 0ms.
+In-memory caching reduces repeat summarization latency from ~1s to <1ms per email.
 
 ## Setup
 

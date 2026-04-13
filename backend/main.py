@@ -37,7 +37,11 @@ def summarize(max_results: int = 100):
             if sender[0] == "\"" and sender[-1] == "\"":
                 sender = sender[1:-1]
 
+        email_start = time.perf_counter()
+
         if email["id"] in cache:
+            elapsed = time.perf_counter() - email_start
+            print(f"[{elapsed:.6f}s] CACHE HIT {email['subject']!r}")
             summaries.append({
                 "id": email["id"],
                 "subject": email["subject"],
@@ -46,8 +50,6 @@ def summarize(max_results: int = 100):
                 "summary": cache[email["id"]]
             })
             continue
-
-        email_start = time.perf_counter()
 
         response = client.chat.completions.create(
             extra_body={"thinking": {"type": "disabled"}},
