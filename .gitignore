@@ -5,6 +5,7 @@ __pycache__/
 venv/
 credentials.json
 token.json
+cache.json
 node_modules/
 dist/
 .vscode/

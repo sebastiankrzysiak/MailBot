@@ -1,5 +1,6 @@
 import time
 import os
+import json
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from openai import OpenAI
@@ -9,7 +10,17 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-cache = {}
+CACHE_FILE = "cache.json"
+
+if os.path.exists(CACHE_FILE):
+    with open(CACHE_FILE, "r") as f:
+        cache = json.load(f)
+else:
+    cache = {}
+
+def save_cache():
+    with open(CACHE_FILE, "w") as f:
+        json.dump(cache, f)
 
 client = OpenAI(
     base_url=os.getenv("LMSTUDIO_URL"),
@@ -71,6 +82,7 @@ def summarize(max_results: int = 100):
         print(f"[{elapsed:.2f}s] {email['subject']!r}")
 
         cache[email["id"]] = response.choices[0].message.content
+        save_cache()
         summaries.append({
             "id": email["id"],
             "subject": email["subject"],
@@ -163,6 +175,7 @@ def jobs(max_results: int = 100):
                         sender = sender[1:-1]
 
                 cache[email["id"]] = content
+                save_cache()
                 summaries.append({
                     "id": email["id"],
                     "subject": email["subject"],
@@ -213,6 +226,7 @@ def school(max_results: int = 100):
         )
 
         cache[email["id"]] = response.choices[0].message.content
+        save_cache()
         summaries.append({
             "id": email["id"],
             "subject": email["subject"],
