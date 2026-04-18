@@ -13,6 +13,7 @@ export type EmailSummary = {
 export type Email = {
   id: string
   subject: string
+  date: string
 }
 
 export type RecurringSender = {
@@ -22,7 +23,7 @@ export type RecurringSender = {
 }
 
 function App() {
-  const [active, setActive] = useState("summaries")
+  const [active, setActive] = useState("recurring")
   const [emails, setEmails] = useState<EmailSummary[]>([])
   const [senders, setSenders] = useState<RecurringSender[]>([])
   const [jobsEmails, setJobsEmails] = useState<EmailSummary[]>([])

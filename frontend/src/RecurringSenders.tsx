@@ -74,12 +74,15 @@ function RecurringSenders({ senders, isLoading, onFetch, onDelete }: Props) {
               {sender.emails.map(email => (
                 <div key={email.id} className="flex justify-between items-center py-1">
                   <p className="text-gray-600 text-sm">{email.subject}</p>
-                  <button
-                    onClick={() => onDelete(email.id)}
-                    className="text-red-400 hover:text-red-600 cursor-pointer"
-                  >
-                    <Trash2 size={16} />
-                  </button>
+                  <div className="flex items-center gap-3">
+                    <p className="text-gray-400 text-xs">{email.date}</p>
+                    <button
+                      onClick={() => onDelete(email.id)}
+                      className="text-red-400 hover:text-red-600 cursor-pointer"
+                    >
+                      <Trash2 size={16} />
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
